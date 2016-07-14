@@ -1,0 +1,24 @@
+<h1>Looking for Recipes with the ingredient <%= @search_term %></h1>
+
+<% if @recipes.length == 0 %>
+
+<p>Sorry, I didn't find recipes with the ingredient <%= @search_term %></p>
+
+<% else %>
+
+<table border="1">
+	<tr>
+		<th>Image</th>
+		<th>Title</th>
+		<th>Social Rank</th>
+	</tr>
+	<% @recipes.each do |recipe| %>
+	<tr>
+		<th><%= link_to image_tag(recipe["image_url"], size: "100"), recipe["source_url"] %></th>
+		<th><%= sanitize(link_to recipe["title"], recipe["source_url"]) %></th>
+		<th><%= recipe["social_rank"] %></th>
+	</tr>
+	<% end %>
+</table>
+
+<% end %>
